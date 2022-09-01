@@ -1,7 +1,7 @@
 <template>
     <div class="form-control">
         <label v-if="label !== ''" class="t-row justify-between pb-1.5 px-1" :for="name">
-            <span class="label-text">{{  label  }}</span>
+            <span class="label-text">{{ label }}</span>
             <slot name="leftLabel" />
         </label>
         <template v-if="area">
@@ -14,11 +14,10 @@
             <input autocomplete="off" class="input input-bordered" v-bind="$attrs" :name="name" :type="type"
                 :value="inputValue" :placeholder="placeholder" @input="handleChange" @blur="handleBlur" />
 
-
         </template>
         <label class="flex items-center min-h-[1.4rem] px-1">
             <span class="label-text-alt text-error text-2xs leading-3">
-                {{  errorMessage || successMessage  }}</span>
+                {{ errorMessage || successMessage }}</span>
         </label>
     </div>
 </template>
@@ -29,7 +28,7 @@ import { useField } from 'vee-validate'
 const props = defineProps({
     type: {
         type: String,
-        default: false
+        default: 'text'
     },
     area: {
         type: Boolean,

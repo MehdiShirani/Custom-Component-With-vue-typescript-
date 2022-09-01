@@ -32,7 +32,6 @@ const closeModal = () => {
 }
 </script>
 
-
 <template>
     <input v-model="checkboxModel" type="checkbox" class="modal-toggle">
     <div class="modal" @click="closeModal">

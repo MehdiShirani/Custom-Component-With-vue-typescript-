@@ -7,7 +7,8 @@
         </Head>
         <div class="navbar bg-base-100">
             <div class="flex-1">
-                <a class="btn btn-ghost normal-case text-xl">Components</a>
+                <nuxt-link :to="{ name: 'index' }" class="btn btn-ghost normal-case text-xl">Home</nuxt-link>
+                <nuxt-link :to="{ name: 'slider' }" class="btn btn-ghost normal-case text-xl">Slider</nuxt-link>
             </div>
             <div class="flex-none gap-2">
                 <div class="form-control">
