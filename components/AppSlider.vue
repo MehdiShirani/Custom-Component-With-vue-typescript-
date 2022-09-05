@@ -1,12 +1,20 @@
 <template>
     <div class="relative lg:px-5">
+        <template v-if="arrows">
+            <button class="hidden lg:block absolute top-1/2 -right-5 transition translate--y-1/2" @click="clickPrev">
+                <chevron-right-icon class="w-8"></chevron-right-icon>
+            </button>
+            <button class="hidden lg:block absolute top-1/2 -left-5 transition translate--y-1/2" @click="clickNext">
+                <chevron-left-icon class="w-8"></chevron-left-icon>
+            </button>
+        </template>
         <!-- Arrows -->
         <div class="overflow-x-hidden">
             <div ref="sliderWrapperRef" class="flex">
                 <!-- v-for -->
                 <template v-for="(item, index) in items" :key="index">
                     <div :ref="(el) => setChildrenRef(el, index)" :class="[
-                        { 'py-2 px-3 first:pr-3 last:pl-3': defaultPadding },
+                        { 'py-2 px-1 first:pr-3 last:pl-3': defaultPadding },
                         itemContainerClass
                     ]">
                         <slot name="item" :item="item" :index="index" />
@@ -22,14 +30,17 @@
 import { gsap } from "gsap";
 import Draggable from "gsap/Draggable";
 import { useEventListener } from "@vueuse/core";
-
-
+import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/vue/24/solid/index.js";
 
 //Define Props | Emit
 const props = defineProps({
     items: {
         type: Array,
         default: () => []
+    },
+    arrows: {
+        type: Boolean,
+        default: () => true,
     },
     defaultPadding: {
         type: Boolean,
@@ -57,7 +68,6 @@ const props = defineProps({
     },
 })
 
-
 const sliderWrapperRef = ref<any>(null)
 const childrenRef = ref<any>([])
 
@@ -72,6 +82,7 @@ onBeforeUpdate(() => {
 const getConfig = () => {
     const el = unref(sliderWrapperRef)
     const maxX: number = el!.scrollWidth - el!.clientWidth
+
     return { el, maxX }
 }
 
@@ -135,7 +146,6 @@ const setActiveIndexEnd = (activeIndex: number) => {
         });
     }
 };
-
 const setActiveIndexMiddle = (activeIndex: number) => {
     //move to middle item
     if (childrenRef.value[activeIndex]) {
@@ -168,5 +178,22 @@ watch(
         setActiveIndexEnd(value);
     }
 );
-
+const clickNext = () => {
+    const { el } = getConfig();
+    const currentX = gsap.getProperty(unref(el), "x");
+    const plusX = unref(el)!.clientWidth;
+    gsap.to(unref(el), {
+        x: getValidX(+currentX + plusX),
+        ...props.config,
+    });
+};
+const clickPrev = () => {
+    const { el } = getConfig();
+    const currentX = gsap.getProperty(unref(el), "x");
+    const plusX = unref(el)!.clientWidth;
+    gsap.to(unref(el), {
+        x: getValidX(+currentX - plusX),
+        ...props.config,
+    });
+};
 </script>

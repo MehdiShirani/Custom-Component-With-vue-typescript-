@@ -5,33 +5,11 @@
             <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css"
                 rel="stylesheet" type="text/css" />
         </Head>
-        <div class="navbar bg-base-100">
+        <div class="navbar bg-base-100 mb-10">
             <div class="flex-1">
                 <nuxt-link :to="{ name: 'index' }" class="btn btn-ghost normal-case text-xl">Home</nuxt-link>
+                <nuxt-link :to="{ name: 'scrollnav' }" class="btn btn-ghost normal-case text-xl">Scroll Nav</nuxt-link>
                 <nuxt-link :to="{ name: 'slider' }" class="btn btn-ghost normal-case text-xl">Slider</nuxt-link>
-            </div>
-            <div class="flex-none gap-2">
-                <div class="form-control">
-                    <input type="text" placeholder="Search" class="input input-bordered" />
-                </div>
-                <div class="dropdown dropdown-end">
-                    <label tabindex="0" class="btn btn-ghost btn-circle avatar">
-                        <div class="w-10 rounded-full">
-                            <img src="https://placeimg.com/80/80/people" />
-                        </div>
-                    </label>
-                    <ul tabindex="0"
-                        class="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
-                        <li>
-                            <a class="justify-between">
-                                Profile
-                                <span class="badge">New</span>
-                            </a>
-                        </li>
-                        <li><a>Settings</a></li>
-                        <li><a>Logout</a></li>
-                    </ul>
-                </div>
             </div>
         </div>
         <nuxt-page></nuxt-page>

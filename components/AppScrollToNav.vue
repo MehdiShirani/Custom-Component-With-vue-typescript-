@@ -1,5 +1,5 @@
 <template>
-    <app-slider :items="items" item-container-class="flex-shrink-0" :middle="activeItemIndex" :arrows="false">
+    <app-slider :items="items" item-container-class="flex-shrink-0" :end="activeItemIndex" :arrows="false">
         <template #item="{ item, index }">
             <div role="button" :class="{ 'text-primary': index === activeItemIndex }" @click="scrollToID(item.id)">
                 {{ item.label }}
