@@ -10,3 +10,9 @@
         direction: rtl !important;
     }
 }
+
+@layer components {
+    .card-loading {
+      @apply bg-white rounded-lg p-4 shadow-md;
+    }
+  }

@@ -31,6 +31,7 @@ import { gsap } from "gsap";
 import Draggable from "gsap/Draggable";
 import { useEventListener } from "@vueuse/core";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/vue/24/solid/index.js";
+import { useRoute } from 'vue-router'
 
 //Define Props | Emit
 const props = defineProps({
@@ -81,15 +82,26 @@ onBeforeUpdate(() => {
 
 const getConfig = () => {
     const el = unref(sliderWrapperRef)
+    // console.log('el!.scrollWidth', el.scrollWidth);
+    // console.log('el!.clientWidth', el.clientWidth);
     const maxX: number = el!.scrollWidth - el!.clientWidth
-
+    // await nextTick()
     return { el, maxX }
 }
 
 const reCalculate = () => {
-    const { el, maxX } = getConfig();
+    // const { el, maxX } = getConfig();
+    const el = unref(sliderWrapperRef)
+    console.log('el!.scrollWidth', el.scrollWidth);
+    console.log('el!.clientWidth', el.clientWidth);
+    const maxX: number = el.scrollWidth - el.clientWidth
     Draggable.get(unref(el)).applyBounds({ minX: 0, maxX })
 }
+const route = useRoute()
+watch(() => route.path, () => {
+    reCalculate()
+    // Draggable.get(unref(el)).applyBounds({ minX: 0, maxX })
+})
 onUpdated(() => {
     reCalculate();
 });
@@ -97,9 +109,11 @@ onUpdated(() => {
 onMounted(() => {
     gsap.registerPlugin(Draggable);
     let { el, maxX } = getConfig();
+    console.log('maxX', maxX);
     Draggable.create(unref(el), {
         type: 'x',
         edgeResistance: 0.9,
+        //@ts-ignore
         bounds: { minX: 0, maxX }
     })
     useEventListener('resize', reCalculate)

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="container max-w-[95%] mx-auto">
 
         <Head>
             <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css"
@@ -13,27 +13,5 @@
             </div>
         </div>
         <nuxt-page></nuxt-page>
-        <footer class="footer p-10 bg-neutral text-neutral-content mt-[30rem]">
-            <div>
-                <span class="footer-title">Services</span>
-                <a class="link link-hover">Branding</a>
-                <a class="link link-hover">Design</a>
-                <a class="link link-hover">Marketing</a>
-                <a class="link link-hover">Advertisement</a>
-            </div>
-            <div>
-                <span class="footer-title">Company</span>
-                <a class="link link-hover">About us</a>
-                <a class="link link-hover">Contact</a>
-                <a class="link link-hover">Jobs</a>
-                <a class="link link-hover">Press kit</a>
-            </div>
-            <div>
-                <span class="footer-title">Legal</span>
-                <a class="link link-hover">Terms of use</a>
-                <a class="link link-hover">Privacy policy</a>
-                <a class="link link-hover">Cookie policy</a>
-            </div>
-        </footer>
     </div>
 </template>

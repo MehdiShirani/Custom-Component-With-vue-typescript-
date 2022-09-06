@@ -1,6 +1,6 @@
 <template>
-    <div class="mt-10">
-        <section class="my-3 lg:mt-0 lg:mx-10">
+    <div class="mt-10 mx-auto">
+        <section class="my-3 lg:mt-0 lg:mx-10" v-if="show">
             <app-slider :items="items">
                 <template #item="{ item }">
                     <div class="card w-96 bg-base-100 shadow-xl image-full">
@@ -18,6 +18,10 @@
                 </template>
             </app-slider>
         </section>
+        <div class="w-full mx-auto px-10" v-else>
+            <div class="h-72 rounded-lg bg-gray-600 loading">
+            </div>
+        </div>
     </div>
 </template>
 
@@ -36,4 +40,10 @@ const items = [
     { id: "4", label: "هدست مخصوص بازی پرووان مدل PHG3845", img: img4 },
     { id: "5", label: " دو سیم کارت ظرفیت 64 گیگابایت ", img: img5 },
 ];
+const show = ref(false)
+onMounted(() => {
+    setTimeout(() => {
+        show.value = true
+    }, 1000);
+})
 </script>

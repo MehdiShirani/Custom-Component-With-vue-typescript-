@@ -28,6 +28,29 @@ module.exports = {
       40: "40",
       21: "21",
     },
+    skeletonScreen: {
+      DEFAULT: {
+        baseColor: "#c7c7c7",
+        movingColor:
+          "linear-gradient(to right, transparent 0%, #E8E8E8 50%, transparent 100%)",
+        duration: "1s",
+        timing: "cubic-bezier(0.4, 0.0, 0.2, 1)",
+      },
+      blue: {
+        baseColor: "blue",
+        movingColor:
+          "linear-gradient(to right, transparent 0%, lightblue 50%, transparent 100%)",
+        duration: "2s",
+        timing: "ease",
+      },
+      red: {
+        baseColor: "red",
+        movingColor:
+          "linear-gradient(to right, transparent 0%, pink 50%, transparent 100%)",
+        duration: "3s",
+        timing: "linear",
+      },
+    },
     extend: {
       // typography: {
       //   xs: {
@@ -64,6 +87,7 @@ module.exports = {
     // require("@tailwindcss/typography"),
     require("@tailwindcss/line-clamp"),
     require("@tailwindcss/aspect-ratio"),
+    require("@gradin/tailwindcss-skeleton-screen"),
   ],
   daisyui: {
     styled: true,
