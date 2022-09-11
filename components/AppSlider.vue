@@ -14,7 +14,7 @@
                 <!-- v-for -->
                 <template v-for="(item, index) in items" :key="index">
                     <div :ref="(el) => setChildrenRef(el, index)" :class="[
-                        { 'py-2 px-1 first:pr-3 last:pl-3': defaultPadding },
+                        { 'py-2 px-4 first:pr-3 last:pl-3': defaultPadding },
                         itemContainerClass
                     ]">
                         <slot name="item" :item="item" :index="index" />
@@ -82,25 +82,18 @@ onBeforeUpdate(() => {
 
 const getConfig = () => {
     const el = unref(sliderWrapperRef)
-    // console.log('el!.scrollWidth', el.scrollWidth);
-    // console.log('el!.clientWidth', el.clientWidth);
     const maxX: number = el!.scrollWidth - el!.clientWidth
-    // await nextTick()
     return { el, maxX }
 }
 
 const reCalculate = () => {
-    // const { el, maxX } = getConfig();
     const el = unref(sliderWrapperRef)
-    console.log('el!.scrollWidth', el.scrollWidth);
-    console.log('el!.clientWidth', el.clientWidth);
     const maxX: number = el.scrollWidth - el.clientWidth
     Draggable.get(unref(el)).applyBounds({ minX: 0, maxX })
 }
 const route = useRoute()
 watch(() => route.path, () => {
     reCalculate()
-    // Draggable.get(unref(el)).applyBounds({ minX: 0, maxX })
 })
 onUpdated(() => {
     reCalculate();
@@ -109,7 +102,6 @@ onUpdated(() => {
 onMounted(() => {
     gsap.registerPlugin(Draggable);
     let { el, maxX } = getConfig();
-    console.log('maxX', maxX);
     Draggable.create(unref(el), {
         type: 'x',
         edgeResistance: 0.9,

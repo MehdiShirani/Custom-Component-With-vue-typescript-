@@ -1,23 +1,29 @@
 <template>
-    <div class="flex flex-col space-y-3 justify-center items-center">
-        <div class="sticky top-0 bg-white py-4 z-10">
-            <app-scroll-to-nav :items="CourseTabs"></app-scroll-to-nav>
-        </div>
-        <template v-for="item in CourseTabs" :key="`course-item-${item.id}`">
-            <div class="h-96 w-full flex flex-col items-center justify-center my-96 bg-green-200 p-8">
-                <h2 :id="item.id" class="font-bold text-4xl">{{ item.label }}</h2>
+    <div class="max-w-6xl mx-auto">
+        <div class="flex flex-col space-y-10 justify-center items-center">
+            <div class="sticky w-full top-0 bg-white py-2 z-10 my-10">
+                <app-scroll-to-nav :items="CourseTabs"></app-scroll-to-nav>
             </div>
-        </template>
+            <template v-for="item in CourseTabs" :key="`course-item-${item.id}`">
+                <div class="aspect-w-2 aspect-h-3 overflow-hidden rounded-lg sm:col-span-4 lg:col-span-5">
+                    <img :id="item.id" :src="item.img" :alt="item.id" class="object-cover object-center" />
+                </div>
+            </template>
+        </div>
+        <div class="flex justify-center items-center h-screen font-medium text-lg">Footer</div>
     </div>
 </template>
 
 
 <script setup lang="ts">
+import img1 from '~/assets/img/1-scroll.jpg'
+import img2 from '~/assets/img/2-scroll.jpg'
+import img3 from '~/assets/img/3-scroll.jpg'
+import img4 from '~/assets/img/4-scroll.jpg'
 const CourseTabs = [
-    { id: "where-to-start", label: "از کجا شروع کنم؟" },
-    { id: "register-verification", label: "نحوه ثبت‌نام و احراز هویت" },
-    { id: "sell-buy", label: "خرید و فروش ارز دیجیتال" },
-    { id: "withdraw-deposit", label: "واریز و برداشت ارز دیجیتال در کیف پول" },
-    { id: "referral-marketing", label: "طرح دعوت از دوستان در گرندبیتکس" },
+    { id: "watch", label: "ساعت هوشمند", img: img1 },
+    { id: "digital", label: "دیجیتال", img: img2 },
+    { id: "mobile", label: "موبایل", img: img3 },
+    { id: "laptop", label: "لپتاپ", img: img4 },
 ];
 </script>

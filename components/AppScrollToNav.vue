@@ -1,7 +1,8 @@
 <template>
     <app-slider :items="items" item-container-class="flex-shrink-0" :end="activeItemIndex" :arrows="false">
         <template #item="{ item, index }">
-            <div role="button" :class="{ 'text-primary': index === activeItemIndex }" @click="scrollToID(item.id)">
+            <div role="button" :class="{ 'text-primary divide-y-2 divide-red-400': index === activeItemIndex }"
+                @click="scrollToID(item.id)">
                 {{ item.label }}
             </div>
         </template>
@@ -16,7 +17,7 @@ import ScrollToPlugin from "gsap/ScrollToPlugin";
 
 const props = withDefaults(
     defineProps<{ items: { id: string; label: string }[]; offset?: number }>(),
-    { offset: 300 }
+    { offset: 140 }
 )
 
 const route = useRoute();
