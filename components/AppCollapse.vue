@@ -1,7 +1,7 @@
 <template>
     <div :class="{
         'bg-gray-100':isOpen && !noStyle,
-        'py-3 px-3.5 t-row justify-between cursor-pointer rounded transition-all lg:hover:bg-gray-200':
+        'py-3 px-3.5 t-row justify-between cursor-pointer rounded-lg transition-all bg-gray-100 lg:hover:bg-gray-200':
         !noStyle
     }" @click="toggle" v-bind="$attrs">
         <slot name="title" :is-open="isOpen" />
