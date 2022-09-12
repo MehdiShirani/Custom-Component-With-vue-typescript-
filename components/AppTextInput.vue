@@ -5,9 +5,8 @@
             <slot name="leftLabel" />
         </label>
         <template v-if="area">
-            <textarea class="input input-bordered h-32" v-bind="$attrs" :name="name" :type="type" :value="inputValue"
-                :placeholder="placeholder" @input="handleChange" @blur="handleBlur">
-
+            <textarea class="input input-bordered h-32" v-bind="$attrs" :name="name" rows="4" :value="inputValue"
+                @input="handleChange" @blur="handleBlur">
             </textarea>
         </template>
         <template v-else>

@@ -4,21 +4,26 @@ import { ButtonVariantEnum, ToastEnum } from '~/types'
 
 const modal = ref(false)
 const title = ref("")
+const description = ref("")
 
 
 const { showToast } = useToast();
 const showMessage = () => {
     showToast({ message: "با موفقیت انجام شد.", type: ToastEnum.success });
 };
+const { openMenu, target } = useMenu()
+
 </script>
 
 <template>
     <div>
+        <!-- Hero -->
         <div class="w-full flex flex-col justify-center items-center">
             <h1 class="text-5xl font-bold mb-8">Hi 👋</h1>
             <h1 class="text-3xl font-bold"> All Component With Typescript</h1>
         </div>
-        <div class="grid grid-cols-4 gap-5 mt-20">
+        <!-- Toast | Collapse | Modal -->
+        <div class="grid grid-cols-5 gap-5 mt-20">
             <div class="flex flex-col gap-4">
                 <p class="font-medium text-lg">Modal</p>
                 <app-button :variant="ButtonVariantEnum.error" @click="modal = true" class="btn-outline">
@@ -26,12 +31,27 @@ const showMessage = () => {
                 </app-button>
             </div>
             <div class="flex flex-col gap-4">
+                <p class="font-medium text-lg">Menu</p>
+                <div class="relative">
+                    <button class="btn btn-primary no-animation" @click="openMenu">
+                        Open Menu
+                    </button>
+                    <div class="bg-orange-200">
+                        <div class="absolute top-14 inset-x-0 h-0 invisible border rounded-box opacity-0 z-30 bg-gray-50"
+                            ref="target">
+                            <ul class="p-4 space-y-1 rounded-lg">
+                                <li v-for="i in 3">item{{ i }}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col gap-4">
                 <p class="font-medium text-lg">Toast</p>
                 <app-button :variant="ButtonVariantEnum.warning" @click="showMessage">
                     Show Toast
                 </app-button>
             </div>
-
             <div class="col-span-2">
                 <div class="flex flex-col gap-4">
                     <p class="font-medium text-lg">Collapse</p>
@@ -54,14 +74,27 @@ const showMessage = () => {
                 </div>
             </div>
         </div>
+        <!-- Menu -->
+        <div class="grid grid-cols-4 gap-5 mt-10">
+
+        </div>
+        <!-- Input -->
         <div class="grid grid-cols-4 gap-5 mt-10">
             <div class="flex flex-col gap-4">
                 <p class="font-medium text-lg">Input</p>
                 <app-text-input label="عنوان" name="title" v-model="title" placeholder="عنوان را وارد نمایید" />
             </div>
+            <div class="col-span-3">
+                <div class="flex flex-col gap-4">
+                    <p class="font-medium text-lg">Textarea </p>
+                    <client-only>
+                        <app-text-input label="عنوان" area name="title" v-model="description" />
+                    </client-only>
+                </div>
+            </div>
         </div>
 
-        <!--#endregion Hero -->
+        <!-- App Modal -->
         <app-modal v-model="modal">
             <template #title>
                 ویرایش کاربران
